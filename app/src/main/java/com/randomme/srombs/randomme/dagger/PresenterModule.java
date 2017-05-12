@@ -1,6 +1,6 @@
 package com.randomme.srombs.randomme.dagger;
 
-import com.randomme.srombs.randomme.UsersPresenter;
+import com.randomme.srombs.randomme.users.UsersPresenter;
 import com.randomme.srombs.randomme.api.Api;
 
 import dagger.Module;

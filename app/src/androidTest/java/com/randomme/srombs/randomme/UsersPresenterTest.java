@@ -11,6 +11,8 @@ import com.randomme.srombs.randomme.model.LoginInfo;
 import com.randomme.srombs.randomme.model.Name;
 import com.randomme.srombs.randomme.model.PictureUrls;
 import com.randomme.srombs.randomme.model.User;
+import com.randomme.srombs.randomme.users.UsersPresenter;
+import com.randomme.srombs.randomme.users.UsersView;
 
 import org.junit.Before;
 import org.junit.Rule;

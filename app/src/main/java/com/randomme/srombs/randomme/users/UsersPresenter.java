@@ -1,4 +1,4 @@
-package com.randomme.srombs.randomme;
+package com.randomme.srombs.randomme.users;
 
 import com.randomme.srombs.randomme.api.Api;
 import com.randomme.srombs.randomme.presenter.BasePresenter;
