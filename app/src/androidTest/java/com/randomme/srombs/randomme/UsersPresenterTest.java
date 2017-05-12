@@ -10,6 +10,7 @@ import com.randomme.srombs.randomme.model.Location;
 import com.randomme.srombs.randomme.model.LoginInfo;
 import com.randomme.srombs.randomme.model.Name;
 import com.randomme.srombs.randomme.model.PictureUrls;
+import com.randomme.srombs.randomme.model.Results;
 import com.randomme.srombs.randomme.model.User;
 import com.randomme.srombs.randomme.users.UsersPresenter;
 import com.randomme.srombs.randomme.users.UsersView;
@@ -62,7 +63,7 @@ public class UsersPresenterTest {
     @Test
     public void shouldShowUsers() {
 
-        when(api.getUsers()).thenReturn(Observable.just(setupUserList()));
+        when(api.getUsers()).thenReturn(Observable.just(setupListResults()));
 
         presenter.loadUsers();
 
@@ -85,6 +86,12 @@ public class UsersPresenterTest {
         verify(mockView).hideLoadingIndicator();
 
         verifyNoMoreInteractions(mockView);
+    }
+
+    private Results setupListResults() {
+        Results results = new Results();
+        results.setUsers(setupUserList());
+        return results;
     }
 
     private List<User> setupUserList() {
