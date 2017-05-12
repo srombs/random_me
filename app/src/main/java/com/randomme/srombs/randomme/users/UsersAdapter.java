@@ -17,6 +17,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
 /**
  * Created by srombs on 5/11/17.
@@ -26,16 +27,18 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
 
     private List<User> users;
     private Context context;
+    IUserClicker clicker;
 
-    public UsersAdapter(Context context) {
+    public UsersAdapter(Context context, IUserClicker clicker) {
         users = new ArrayList<>();
         this.context = context;
+        this.clicker = clicker;
     }
 
     @Override
     public UserViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.user_row, parent, false);
-        return new UserViewHolder(view);
+        return new UserViewHolder(view, clicker);
     }
 
     @Override
@@ -66,16 +69,34 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
         this.users = users;
     }
 
-    public static class UserViewHolder extends RecyclerView.ViewHolder {
+    public User getUser(int position) {
+        return users.get(position);
+    }
+
+    public static class UserViewHolder extends RecyclerView.ViewHolder
+        implements View.OnClickListener {
         @BindView(R.id.user_name)
         TextView name;
         @BindView(R.id.user_avatar)
         ImageView avatar;
 
-        public UserViewHolder(View view) {
+        IUserClicker clicker;
+
+        public UserViewHolder(View view, IUserClicker clicker) {
             super(view);
             ButterKnife.bind(this, view);
+            view.setOnClickListener(this);
+            this.clicker = clicker;
         }
+
+        @Override
+        public void onClick(View v) {
+            clicker.onUserClicked(getAdapterPosition());
+        }
+    }
+
+    public interface IUserClicker {
+        void onUserClicked(int position);
     }
 
 }

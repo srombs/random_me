@@ -1,5 +1,7 @@
 package com.randomme.srombs.randomme.users;
 
+import android.content.Intent;
+import android.os.Parcel;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,6 +13,10 @@ import android.widget.Toast;
 import com.randomme.srombs.randomme.R;
 import com.randomme.srombs.randomme.RandomMeApplication;
 import com.randomme.srombs.randomme.model.User;
+import com.randomme.srombs.randomme.users.detail.UserDetailActivity;
+import com.randomme.srombs.randomme.util.BundleKey;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -18,6 +24,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
 public class UsersActivity extends AppCompatActivity implements UsersView {
 
@@ -45,10 +52,24 @@ public class UsersActivity extends AppCompatActivity implements UsersView {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new UsersAdapter(this);
+        adapter = new UsersAdapter(this, clickListener);
         recyclerView.setAdapter(adapter);
 
         presenter.loadUsers();
+    }
+
+    UsersAdapter.IUserClicker clickListener = new UsersAdapter.IUserClicker() {
+        @Override
+        public void onUserClicked(int position) {
+            Timber.d("pos: " + position);
+            goToUserDetails(adapter.getUser(position));
+        }
+    };
+
+    private void goToUserDetails(User user) {
+        Intent intent = new Intent(this, UserDetailActivity.class);
+        intent.putExtra(BundleKey.USER, Parcels.wrap(user));
+        startActivity(intent);
     }
 
     @Override

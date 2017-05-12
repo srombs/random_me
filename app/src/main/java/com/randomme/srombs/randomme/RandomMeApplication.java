@@ -7,6 +7,8 @@ import com.randomme.srombs.randomme.dagger.DaggerAppComponent;
 import com.randomme.srombs.randomme.dagger.DemoComponent;
 import com.randomme.srombs.randomme.dagger.PresenterModule;
 
+import timber.log.Timber;
+
 /**
  * Created by srombs on 5/11/17.
  */
@@ -20,6 +22,8 @@ public class RandomMeApplication extends Application {
         super.onCreate();
 
         component = createComponent();
+
+        Timber.plant(new Timber.DebugTree());
     }
 
     public DemoComponent getComponent() {
