@@ -2,6 +2,7 @@ package com.randomme.srombs.randomme.users;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -33,7 +34,8 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
 
     @Override
     public UserViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        View view = LayoutInflater.from(context).inflate(R.layout.user_row, parent, false);
+        return new UserViewHolder(view);
     }
 
     @Override
@@ -46,10 +48,11 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
         String name = context.getString(R.string.name, title, first, last);
         holder.name.setText(name);
 
-        String thumbnailUrl = users.get(position).getPicture().getThumbnailUrl();
+        String pictureUrl = users.get(position).getPicture().getLargeUrl();
 
         Picasso.with(context)
-                .load(thumbnailUrl)
+                .load(pictureUrl)
+                .placeholder(R.mipmap.ic_launcher)
                 .into(holder.avatar);
     }
 

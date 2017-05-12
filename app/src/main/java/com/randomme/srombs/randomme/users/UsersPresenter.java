@@ -1,10 +1,15 @@
 package com.randomme.srombs.randomme.users;
 
+import com.fernandocejas.frodo.annotation.RxLogObservable;
 import com.randomme.srombs.randomme.api.Api;
+import com.randomme.srombs.randomme.model.User;
 import com.randomme.srombs.randomme.presenter.BasePresenter;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
+import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -42,7 +47,7 @@ public class UsersPresenter extends BasePresenter<UsersView> {
         view.showLoadingIndicator();
 
         loadUsersSubscription =
-                api.getUsers()
+                getUsers()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(users -> {
@@ -52,5 +57,11 @@ public class UsersPresenter extends BasePresenter<UsersView> {
                     view.hideLoadingIndicator();
                     view.showLoadingError();
                 });
+    }
+
+    @RxLogObservable
+    private Observable<List<User>> getUsers() {
+        return api.getUsers()
+                .map(results -> results.getUsers());
     }
 }

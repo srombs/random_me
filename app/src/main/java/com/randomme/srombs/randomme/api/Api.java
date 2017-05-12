@@ -1,5 +1,6 @@
 package com.randomme.srombs.randomme.api;
 
+import com.randomme.srombs.randomme.model.Results;
 import com.randomme.srombs.randomme.model.User;
 
 import java.util.List;
@@ -13,6 +14,6 @@ import rx.Observable;
 
 public interface Api {
 
-    @GET("/")
-    Observable<List<User>> getUsers();
+    @GET("?results=10")
+    Observable<Results> getUsers();
 }
