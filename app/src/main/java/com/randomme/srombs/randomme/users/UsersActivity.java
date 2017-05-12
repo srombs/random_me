@@ -48,6 +48,8 @@ public class UsersActivity extends AppCompatActivity implements UsersView {
         adapter = new UsersAdapter(this);
         recyclerView.setAdapter(adapter);
 
+        presenter.loadUsers();
+
     }
 
     @Override

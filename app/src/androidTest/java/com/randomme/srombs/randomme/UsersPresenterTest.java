@@ -52,7 +52,7 @@ public class UsersPresenterTest {
         TestingComponent component = (TestingComponent) app.getComponent();
         component.inject(this);
 
-
+        //setup the presenter
         presenter = new UsersPresenter(api);
         mockView = mock(UsersView.class);
         presenter.onAttach(mockView);
