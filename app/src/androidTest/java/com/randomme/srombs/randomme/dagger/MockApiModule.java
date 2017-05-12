@@ -41,7 +41,7 @@ public class MockApiModule {
     @Provides
     public Retrofit providesRetrofit(OkHttpClient client) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://randomuser.me/api")
+                .baseUrl("https://randomuser.me/api/")
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)

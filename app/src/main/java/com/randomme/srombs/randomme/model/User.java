@@ -9,13 +9,56 @@ import com.google.gson.annotations.SerializedName;
 public class User {
 
     @SerializedName("name")
-    Name name;
+    private Name name;
     @SerializedName("location")
-    Location location;
+    private Location location;
     @SerializedName("login")
-    LoginInfo login;
+    private LoginInfo login;
     @SerializedName("dob")
-    Birthdate birthdate;
+    private String birthdate;
     @SerializedName("picture")
-    PictureUrls picture;
+    private PictureUrls picture;
+
+    public User() {
+    }
+
+    public Name getName() {
+        return name;
+    }
+
+    public void setName(Name name) {
+        this.name = name;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public LoginInfo getLogin() {
+        return login;
+    }
+
+    public void setLogin(LoginInfo login) {
+        this.login = login;
+    }
+
+    public String getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(String birthdate) {
+        this.birthdate = birthdate;
+    }
+
+    public PictureUrls getPicture() {
+        return picture;
+    }
+
+    public void setPicture(PictureUrls picture) {
+        this.picture = picture;
+    }
 }

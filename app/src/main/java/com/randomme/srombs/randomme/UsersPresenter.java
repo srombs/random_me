@@ -12,7 +12,7 @@ import javax.inject.Inject;
 public class UsersPresenter extends BasePresenter<UsersView> {
 
     Api api;
-
+    UsersView view;
 
 
     @Inject
@@ -22,11 +22,15 @@ public class UsersPresenter extends BasePresenter<UsersView> {
 
     @Override
     public void onAttach(UsersView view) {
-
+        this.view = view;
     }
 
     @Override
     public void onDeatch() {
+
+    }
+
+    public void loadUsers() {
 
     }
 }

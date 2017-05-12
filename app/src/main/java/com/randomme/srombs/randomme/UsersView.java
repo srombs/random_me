@@ -14,4 +14,6 @@ public interface UsersView extends BaseView {
     void showUsers(List<User> users);
     void showLoadingError();
     void showNoUsers();
+    void showLoadingIndicator();
+    void hideLoadingIndicator();
 }
